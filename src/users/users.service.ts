@@ -32,7 +32,9 @@ export class UsersService {
   async findById(id: string) {
     const isValidId = mongoose.Types.ObjectId.isValid(id);
     if (!isValidId) throw new HttpException('User not found', 404);
-    const user = await this.userModel.findById(id).populate('settings');
+    const user = await this.userModel
+      .findById(id)
+      .populate(['settings', 'posts']);
     if (!user) throw new HttpException('User not found', 404);
     return user;
   }

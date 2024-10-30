@@ -8,6 +8,7 @@ import {
   UserSettingsSchema,
 } from '../schemas/userSettings.schema';
 import { UserSettingsService } from '../user-settings/user-settings.service';
+import { PostSchema, Post } from '../schemas/post.schema';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { UserSettingsService } from '../user-settings/user-settings.service';
     MongooseModule.forFeature([
       { name: UserSettings.name, schema: UserSettingsSchema },
     ]),
+    MongooseModule.forFeature([{ name: Post.name, schema: PostSchema }]),
   ],
   controllers: [UsersController],
   providers: [UsersService, UserSettingsService],
